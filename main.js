@@ -1,17 +1,17 @@
 import "./style.css";
 import * as THREE from "three";
-import { BoxHelper } from "three";
- 
+import bg from "./bg/bg.jpg"
+
 //canvas
 const canvas = document.querySelector("#webgl");
- 
+
 //シーン
 const scene = new THREE.Scene();
- 
 
 // 背景用のテクスチャ
 const textureLoader = new THREE.TextureLoader();
-const bgTexture = textureLoader.load("bg/bg.jpg");
+// const bgTexture = textureLoader.load("bg/bg.jpg");
+const bgTexture = textureLoader.load(bg);
 scene.background = bgTexture;
 
 //サイズ
@@ -19,7 +19,8 @@ const sizes = {
   width: innerWidth,
   height: innerHeight,
 };
- 
+
+
 //カメラ
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -27,14 +28,13 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
- 
+
 //レンダラー
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(window.devicePixelRatio);
- 
 
 // オブジェクトを作成
 const boxGeometry = new THREE.BoxGeometry(5, 5, 5, 10);
